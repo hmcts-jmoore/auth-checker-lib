@@ -29,6 +29,14 @@ public class AuthCheckerServiceAndUserFilter extends AbstractPreAuthenticatedPro
 
     @Override
     protected Object getPreAuthenticatedPrincipal(HttpServletRequest request) {
+    	System.out.println("Received Request:");
+    	System.out.println(request.getContextPath());
+    	System.out.println(request.getServletPath());
+    	System.out.println(request.getPathInfo());
+    	System.out.println(request.getQueryString());
+    	System.out.println("Authorization: " + request.getHeader("Authorization"));
+    	System.out.println("ServiceAuthorization: " + request.getHeader("ServiceAuthorization"));
+    	System.out.println("EffectiveUser: " + request.getHeader("EffectiveUser"));
         Service service = authorizeService(request);
         if (service == null) {
             return null;
